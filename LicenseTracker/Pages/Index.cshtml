@@ -1,0 +1,38 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>This site provides a quick and easy way to view and manage Martech stack application license utilization.</p>
+</div>
+
+<table class="table table-responsive table-striped table-dark">
+    <thead>
+    <tr>
+    <th>Application Name</th>
+    <th>Contract Total</th>
+    <th>Contract Duration</th>
+    <th>Cost Per User</th>
+    <th>Maximum Users</th>
+    <th>Current User Count</th>
+    <th>Available User Count</th>
+    </tr>
+    </thead>
+    <tbody class ="table-group-divider">
+    @foreach(var a in Model.ViewModel.Applications)
+    {
+        <tr>
+            <td>@a.Name</td>
+            <td>@a.ContractTotal.ToString("C")</td>
+            <td class="text-center">@a.ContractDuration</td>
+            <td>@a.CostPerUser.ToString("C")</td>
+            <td class="text-center">@a.MaxUsers</td>
+            <td class="text-center">@a.CountUsers</td>
+            <td class="text-center">@a.AvailableUsers</td>
+        </tr>
+    }
+    </tbody>
+</table>

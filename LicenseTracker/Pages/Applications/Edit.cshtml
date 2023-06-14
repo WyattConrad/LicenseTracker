@@ -1,0 +1,55 @@
+﻿@page
+@model LicenseTracker.Pages.Applications.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Application</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Application.Name" class="control-label"></label>
+                <input asp-for="Application.Name" class="form-control" />
+                <span asp-validation-for="Application.Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Application.ContractTotal" class="control-label"></label>
+                <input asp-for="Application.ContractTotal" class="form-control" />
+                <span asp-validation-for="Application.ContractTotal" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Application.ContractDuration" class="control-label"></label>
+                <input asp-for="Application.ContractDuration" class="form-control" />
+                <span asp-validation-for="Application.ContractDuration" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Application.CostPerUser" class="control-label"></label>
+                <input asp-for="Application.CostPerUser" class="form-control" />
+                <span asp-validation-for="Application.CostPerUser" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Application.MaxUsers" class="control-label"></label>
+                <input asp-for="Application.MaxUsers" class="form-control" />
+                <span asp-validation-for="Application.MaxUsers" class="text-danger"></span>
+            </div>
+            <input type="hidden" asp-for="Application.Id" />
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
