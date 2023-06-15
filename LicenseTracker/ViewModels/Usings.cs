@@ -6,3 +6,4 @@ global using Microsoft.EntityFrameworkCore;
 global using LicenseTracker.ViewModels;
 global using System.Linq;
 global using Microsoft.AspNetCore.Mvc.Rendering;
+global using System.ComponentModel.DataAnnotations;

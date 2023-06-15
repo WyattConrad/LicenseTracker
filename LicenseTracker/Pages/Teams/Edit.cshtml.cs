@@ -1,21 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
-using LicenseTracker.Data;
-using LicenseTracker.Models;
-
-namespace LicenseTracker.Pages.Teams
+﻿namespace LicenseTracker.Pages.Teams
 {
     public class EditModel : PageModel
     {
-        private readonly LicenseTracker.Data.LicenseTrackerContext _context;
+        private readonly LicenseTrackerContext _context;
 
-        public EditModel(LicenseTracker.Data.LicenseTrackerContext context)
+        public EditModel(LicenseTrackerContext context)
         {
             _context = context;
         }

@@ -1,10 +1,4 @@
-﻿using LicenseTracker.Data;
-using LicenseTracker.Models;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.EntityFrameworkCore;
-
-namespace LicenseTracker.Pages
+﻿namespace LicenseTracker.Pages
 {
     public class IndexModel : PageModel
     {
@@ -60,7 +54,6 @@ namespace LicenseTracker.Pages
                         bu.AppData.Add(appData);
                     }
                 }
-
             }
 
             ViewModel = new HomePageViewModel

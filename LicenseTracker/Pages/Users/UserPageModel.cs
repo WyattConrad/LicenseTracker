@@ -1,9 +1,4 @@
-﻿
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
-using System.Linq;
-
-namespace LicenseTracker.Pages.Users
+﻿namespace LicenseTracker.Pages.Users
 {
     public class UserPageModel : PageModel
     {

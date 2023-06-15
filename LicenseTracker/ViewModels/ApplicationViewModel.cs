@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace LicenseTracker.ViewModels
+﻿namespace LicenseTracker.ViewModels
 {
     public class ApplicationViewModel
     {

@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace LicenseTracker.Models
+﻿namespace LicenseTracker.Models
 {
     public class Application : BaseClass
     {
