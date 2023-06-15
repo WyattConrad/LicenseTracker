@@ -5,12 +5,18 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
+<h1>Details for @Model.User.Name</h1>
 
 <div>
     <h4>User</h4>
     <hr />
     <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.User.Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.User.Name)
+        </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.User.EmailAddress)
         </dt>
@@ -18,16 +24,16 @@
             @Html.DisplayFor(model => model.User.EmailAddress)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.User.Team)
+            @Html.DisplayNameFor(model => model.User.TeamName)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.User.Team.Id)
+            @Html.DisplayFor(model => model.User.TeamName)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.User.Name)
+            @Html.DisplayNameFor(model => model.User.ApplicationCount)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.User.Name)
+            @Html.DisplayFor(model => model.User.ApplicationCount)
         </dd>
     </dl>
 </div>

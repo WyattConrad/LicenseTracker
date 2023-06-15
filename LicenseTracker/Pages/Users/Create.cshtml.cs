@@ -34,6 +34,8 @@ namespace LicenseTracker.Pages.Users
 
             if (!ModelState.IsValid)
             {
+                PopulateTeamsDropDownList(_context, NewUser.TeamId);
+                PopulateApplicationsDropDownList(_context, Applications);
                 return Page();
             }
 
@@ -46,7 +48,12 @@ namespace LicenseTracker.Pages.Users
                 var thisApp = _context.Application.Find(i);
                 if (thisApp is not null)
                 {
-                    thisApp.Users.Add(entry.Entity);
+                    var appUser = new ApplicationUser
+                    {
+                        ApplicationId = thisApp.Id,
+                        UserId = entry.Entity.Id
+                    };
+                    _context.Add(appUser);
                 }
             }
 

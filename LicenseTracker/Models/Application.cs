@@ -6,7 +6,7 @@ namespace LicenseTracker.Models
     {
         public Application()
         {
-            Users = new List<User>();
+            ApplicationUsers = new List<ApplicationUser>();
         }
 
         [DisplayFormat(DataFormatString = "{0:C}", ApplyFormatInEditMode = true)]
@@ -19,7 +19,7 @@ namespace LicenseTracker.Models
 
         public int MaxUsers { get; set; }
 
-        public List<User>? Users { get; set; }
+        public List<ApplicationUser>? ApplicationUsers { get; set; }
 
 
     }

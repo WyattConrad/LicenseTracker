@@ -1,25 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.EntityFrameworkCore;
-using LicenseTracker.Data;
-using LicenseTracker.Models;
-
-namespace LicenseTracker.Pages.Users
+﻿namespace LicenseTracker.Pages.Users
 {
     public class DetailsModel : PageModel
     {
-        private readonly LicenseTracker.Data.LicenseTrackerContext _context;
+        private readonly LicenseTrackerContext _context;
 
-        public DetailsModel(LicenseTracker.Data.LicenseTrackerContext context)
+        public DetailsModel(LicenseTrackerContext context)
         {
             _context = context;
         }
 
-      public User User { get; set; } = default!; 
+      public UserVM User { get; set; } = default!; 
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -28,14 +18,25 @@ namespace LicenseTracker.Pages.Users
                 return NotFound();
             }
 
-            var user = await _context.User.FirstOrDefaultAsync(m => m.Id == id);
+            var user = await _context.User
+                .Include(u => u.Team)
+                .Include(u => u.Applications)
+                .FirstOrDefaultAsync(m => m.Id == id);
             if (user == null)
             {
                 return NotFound();
             }
             else 
             {
-                User = user;
+                User = new UserVM
+                {
+                    Id = user.Id,
+                    Name = user.Name,
+                    EmailAddress = user.EmailAddress,
+                    TeamId = user.TeamId,
+                    TeamName = user.Team.Name,
+                    ApplicationCount = user.Applications?.Count
+                };
             }
             return Page();
         }

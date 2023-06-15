@@ -4,6 +4,16 @@ namespace LicenseTracker.ViewModels
 {
     public class ApplicationViewModel
     {
+        public ApplicationViewModel()
+        {
+            Name = string.Empty;
+            ContractTotal = 0;
+            ContractDuration = 0;
+            CostPerUser = 0;
+            MaxUsers = 0;
+            CountUsers = 0;
+        }
+
         public int Id { get; set; }
 
         public string Name { get; set; }

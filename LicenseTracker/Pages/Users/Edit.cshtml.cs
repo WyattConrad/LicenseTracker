@@ -1,27 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
-using LicenseTracker.Data;
-using LicenseTracker.Models;
-
-namespace LicenseTracker.Pages.Users
+﻿namespace LicenseTracker.Pages.Users
 {
-    public class EditModel : PageModel
+    public class EditModel : UserPageModel
     {
-        private readonly LicenseTracker.Data.LicenseTrackerContext _context;
+        private readonly LicenseTrackerContext _context;
 
-        public EditModel(LicenseTracker.Data.LicenseTrackerContext context)
+        public EditModel(LicenseTrackerContext context)
         {
             _context = context;
         }
 
         [BindProperty]
-        public User User { get; set; } = default!;
+        public UserVM User { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -30,13 +19,22 @@ namespace LicenseTracker.Pages.Users
                 return NotFound();
             }
 
-            var user =  await _context.User.FirstOrDefaultAsync(m => m.Id == id);
+            var user =  await _context.User.Include(u => u.Applications).Include(u => u.Team).FirstOrDefaultAsync(m => m.Id == id);
             if (user == null)
             {
                 return NotFound();
             }
-            User = user;
-           ViewData["TeamId"] = new SelectList(_context.Team, "Id", "Id");
+            User = new UserVM
+            {
+                Id = user.Id,
+                Name = user.Name,
+                EmailAddress = user.EmailAddress,
+                TeamId = user.TeamId,
+                TeamName = user.Team.Name,
+                ApplicationCount = user.Applications?.Count
+            };
+            PopulateTeamsDropDownList(_context, User.TeamId);
+            PopulateApplicationsDropDownList(_context);
             return Page();
         }
 

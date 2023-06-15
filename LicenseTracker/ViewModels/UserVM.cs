@@ -10,9 +10,10 @@ namespace LicenseTracker.ViewModels
 
         [Display(Name = "Team")]
         public int TeamId { get; set; }
-        public string TeamName { get; set; }
+        public string? TeamName { get; set; }
+
         [Display(Name = "# Applications")]
-        public int ApplicationCount { get; set; }
+        public int? ApplicationCount { get; set; }
 
     }
 }

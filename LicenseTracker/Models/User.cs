@@ -4,7 +4,7 @@
     {
         public User()
         {
-            Applications = new List<Application>();
+            Applications = new List<ApplicationUser>();
         }
 
         public required string EmailAddress { get; set; }
@@ -12,6 +12,6 @@
         public int TeamId { get; set; }
         public Team Team { get; set; }
 
-        public List<Application>? Applications { get; set; }
+        public List<ApplicationUser>? Applications { get; set; }
     }
 }

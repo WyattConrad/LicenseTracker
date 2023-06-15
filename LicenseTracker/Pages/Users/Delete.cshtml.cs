@@ -1,20 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.EntityFrameworkCore;
-using LicenseTracker.Data;
-using LicenseTracker.Models;
-
-namespace LicenseTracker.Pages.Users
+﻿namespace LicenseTracker.Pages.Users
 {
     public class DeleteModel : PageModel
     {
-        private readonly LicenseTracker.Data.LicenseTrackerContext _context;
+        private readonly LicenseTrackerContext _context;
 
-        public DeleteModel(LicenseTracker.Data.LicenseTrackerContext context)
+        public DeleteModel(LicenseTrackerContext context)
         {
             _context = context;
         }
@@ -52,8 +42,11 @@ namespace LicenseTracker.Pages.Users
 
             if (user != null)
             {
+                var appUser = await _context.ApplicationUser.Where(au => au.UserId == user.Id).ToListAsync();
                 User = user;
+                _context.ApplicationUser.RemoveRange(appUser);
                 _context.User.Remove(User);
+                
                 await _context.SaveChangesAsync();
             }
 
