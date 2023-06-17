@@ -1,9 +1,13 @@
+
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+
 builder.Services.AddDbContext<LicenseTrackerContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("LicenseTrackerContext") ?? throw new InvalidOperationException("Connection string 'LicenseTrackerContext' not found.")));
+
 
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 

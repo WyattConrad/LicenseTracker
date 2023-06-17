@@ -12,5 +12,9 @@
         [Display(Name = "# Applications")]
         public int? ApplicationCount { get; set; }
 
+        public int[]? ApplicationIds { get; set; }
+
+        public decimal? TotalApplicationCost { get; set; }
+
     }
 }

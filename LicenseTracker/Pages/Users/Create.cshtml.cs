@@ -1,9 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using LicenseTracker.Data;
-using LicenseTracker.Models;
-using LicenseTracker.ViewModels;
-
-namespace LicenseTracker.Pages.Users
+﻿namespace LicenseTracker.Pages.Users
 {
     public class CreateModel : UserPageModel
     {

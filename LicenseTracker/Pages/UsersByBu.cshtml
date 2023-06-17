@@ -1,0 +1,71 @@
+﻿@page
+
+@model LicenseTracker.Pages.UsersByBuModel
+
+@{
+    ViewData["Title"] = "Users By BU";
+}
+<h4>Users</h4>
+<div class="container-fluid">
+    <div class="row mb-4">
+        <div class="col-10 offset-1">
+            <form method="post" id="thisForm">
+                <select id="selectTeamSL" asp-for="selectedValue" asp-items="Model.TeamSL" class="form-select">
+                    <option value="">All Business Units</option>
+                </select>
+            </form>
+        </div>
+    </div>
+    <div class="row mb-4">
+        <div class="col-10 offset-1">
+            <table class="table table-striped table-dark table-hover">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email Address</th>
+                        <th>Team Name</th>
+                        <th># of Apps</th>
+                        <th>Total Cost</th>
+                    </tr>
+                </thead>
+                <tbody class="table-group-divider">
+                    @foreach (var a in Model.Users)
+                    {
+                        <tr>
+                            <td>@a.Name</td>
+                            <td>@a.EmailAddress</td>
+                            <td class="text-center">@a.TeamName</td>
+                            <td>@a.ApplicationCount</td>
+                            <td>@a.TotalApplicationCost?.ToString("C")</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            // Select list onchange event handler
+            $('#selectTeamSL').change(function () {
+                var selectedValue = $(this).val();
+                console.log(selectedValue);
+                $('#thisForm').submit();
+                // Make an AJAX request to the server
+                // $.ajax({
+                //     url: '/UsersByBU',
+                //     type: 'POST',
+                //     data: { selectedValue: selectedValue },
+                //     success: function (result) {
+                //         console.log(result);
+                //     },
+                //     error: function (error) {
+                //         console.log(error);
+                //     }
+                // });
+            });
+        });
+    </script>
+
+}
