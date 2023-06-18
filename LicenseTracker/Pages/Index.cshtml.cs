@@ -62,5 +62,25 @@
                 BusinessUnits = businessUnits
             };
         }
+
+        public JsonResult OnGetApplicationData()
+        {
+            var applicationData = _context.Application
+                .Include(a => a.ApplicationUsers)
+                .OrderByDescending(a => a.ContractTotal)
+                .Select(a => new ApplicationViewModel
+                {
+                    Id = a.Id,
+                    Name = a.Name,
+                    ContractDuration = a.ContractDuration,
+                    ContractTotal = a.ContractTotal,
+                    CostPerUser = a.CostPerUser,
+                    MaxUsers = a.MaxUsers,
+                    CountUsers = a.ApplicationUsers != null ? a.ApplicationUsers.Count() : 0
+                }).ToArray();
+
+            return new JsonResult(new { appdata = applicationData });
+        }
+
     }
 }
